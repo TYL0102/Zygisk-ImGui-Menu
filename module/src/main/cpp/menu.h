@@ -30,6 +30,7 @@ void DrawMenu()
                 Checkbox(OBFUSCATE("Free Items"), &freeItems);
                 Checkbox(OBFUSCATE("Show Items"), &showAllItems);
                 Checkbox(OBFUSCATE("Train All Weapon"), &allWeaponsTrained);
+                Checkbox(OBFUSCATE("Train All Weapon"), &trainAllCharacter);
                 EndTabItem();
             }
             EndTabBar();
