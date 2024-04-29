@@ -57,8 +57,8 @@ bool IsTraining(void* instance) {
     return origin_IsTraining(instance);
 }
 
-__int32 (*origin_get_TrainingState)(void* instance);
-__int32 get_TrainingState(void* instance) {
+int32_t (*origin_get_TrainingState)(void* instance);
+int32_t get_TrainingState(void* instance) {
     return 4;
 }
 
