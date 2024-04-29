@@ -1,0 +1,29 @@
+name: Lanxue Build
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
+        with:
+          distribution: temurin
+          java-version: 11
+          cache: gradle
+      - run: |
+          chmod +x ./gradlew
+          ./gradlew :module:assembleRelease
+      - run: |
+          ls out/
+          ls out/magisk_module_release
+      - uses: ncipollo/release-action@v1
+        with:
+          tag: modLanxue
+          name: modLanxue
+          artifacts: out/LanxueMod-v1.0-release.zip
+          allowUpdates: true
