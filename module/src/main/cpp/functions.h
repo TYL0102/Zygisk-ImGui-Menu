@@ -3,6 +3,7 @@
 
 // here you can define variables for the patches
 bool addCurrency, freeItems, everythingUnlocked, showAllItems, addSkins;
+bool allWeaponsTrained = true;
 
 monoString *CreateIl2cppString(const char *str) {
     monoString *(*String_CreateString)(void *instance, const char *str) = (monoString*(*)(void*, const char*)) (g_il2cppBaseMap.startAddress + string2Offset(OBFUSCATE("0x2596B20")));
@@ -48,9 +49,18 @@ void* ProductDefinition(void *instance, monoString* id, monoString* storeSpecifi
     return old_ProductDefinition(instance, id, storeSpecificId, type, enabled, payouts);
 }
 
+bool (*origin_IsTraining)(void* instance);
+bool IsTraining(void* instance) {
+    if(instance != NULL && allWeaponsTrained) {
+        return true;
+    }
+    return origin_IsTraining(instance);
+}
+
 void Hooks() {
     HOOK("0xE7BC74", Backend, old_Backend);
     HOOK("0x29DA08C", ProductDefinition, old_ProductDefinition);
+    HOOK("0x229c850", IsTraining, origin_IsTraining);
 }
 
 #endif //ZYCHEATS_SGUYS_FUNCTIONS_H
