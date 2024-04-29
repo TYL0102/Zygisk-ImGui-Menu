@@ -57,10 +57,16 @@ bool IsTraining(void* instance) {
     return origin_IsTraining(instance);
 }
 
+__int32 (*origin_get_TrainingState)(void* instance);
+__int32 get_TrainingState(void* instance) {
+    return 4;
+}
+
 void Hooks() {
     HOOK("0xE7BC74", Backend, old_Backend);
     HOOK("0x29DA08C", ProductDefinition, old_ProductDefinition);
     HOOK("0x229c850", IsTraining, origin_IsTraining);
+    HOOK("0x26b1b48", get_TrainingState, origin_get_TrainingState);
 }
 
 #endif //ZYCHEATS_SGUYS_FUNCTIONS_H
