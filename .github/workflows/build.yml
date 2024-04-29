@@ -23,7 +23,7 @@ jobs:
           ls out/magisk_module_release
       - uses: ncipollo/release-action@v1
         with:
-          tag: modLanxue
-          name: modLanxue
+          tag: LanxueMod
+          name: LanxueMod
           artifacts: out/LanxueMod-v1.0-release.zip
           allowUpdates: true
