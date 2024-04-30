@@ -59,7 +59,7 @@ bool IsTraining(void* instance) {
 
 int (*origin_get_TrainingState)(void* instance);
 int get_TrainingState(void* instance) {
-    return 4;
+    return origin_get_TrainingState(instance);
 }
 
 void Hooks() {
